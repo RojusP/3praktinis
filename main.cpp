@@ -1,3 +1,4 @@
+//praktinis3 RojusPetravicius
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -41,20 +42,20 @@ void showMenu(menuItemType menuList[], int size) {
         cout << i + 1 << ". "
              << setw(40) << left << menuList[i].menuItem
              << fixed << setprecision(2)
-             << menuList[i].menuPrice << " €\n";
+             << menuList[i].menuPrice << " EUR\n";
     }
 
-    cout << "\n0 - Baigti užsakymą\n";
+    cout << "\n0 - Baigti uzsakyma\n";
 }
 
-// Spausdinti sąskaitą
+// Spausdinti saskaita
 void printCheck(menuItemType menuList[], int orderQty[], int size) {
     ofstream outFile("receipt.txt");
 
     double subtotal = 0;
 
-    cout << "\n--- SĄSKAITA ---\n";
-    outFile << "--- SĄSKAITA ---\n";
+    cout << "\nSASKAITA: \n";
+    outFile << "SASKAITA: \n";
 
     for (int i = 0; i < size; i++) {
         if (orderQty[i] > 0) {
@@ -64,22 +65,22 @@ void printCheck(menuItemType menuList[], int orderQty[], int size) {
             cout << orderQty[i] << " "
                  << setw(35) << left << menuList[i].menuItem
                  << fixed << setprecision(2)
-                 << suma << " €\n";
+                 << suma << " EUR\n";
 
             outFile << orderQty[i] << " "
                     << setw(35) << left << menuList[i].menuItem
-                    << suma << " €\n";
+                    << suma << " EUR\n";
         }
     }
 
     double pvm = subtotal * 0.21;
     double total = subtotal + pvm;
 
-    cout << "\nPVM (21%): " << fixed << setprecision(2) << pvm << " €\n";
-    cout << "Galutinė suma: " << total << " €\n";
+    cout << "\nPVM (21%): " << fixed << setprecision(2) << pvm << " EUR\n";
+    cout << "Galutine suma: " << total << " EUR\n";
 
-    outFile << "\nPVM (21%): " << pvm << " €\n";
-    outFile << "Galutinė suma: " << total << " €\n";
+    outFile << "\nPVM (21%): " << pvm << " EUR\n";
+    outFile << "Galutine suma: " << total << " EUR\n";
 
     outFile.close();
 }
@@ -94,7 +95,7 @@ int main() {
 
     getData(menuList, size);
 
-    cout << "Sveiki atvykę į restoraną!\n";
+    cout << "Sveiki atvyke i restorana!\n";
 
     int choice;
 
@@ -105,28 +106,27 @@ int main() {
         cout << "\nPasirinkimas: ";
         cin >> choice;
 
-        // Jei bloga įvestis
+        // Jei bloga ivestis
         if (cin.fail()) {
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << "Klaida! Įveskite skaičių.\n";
+            cout << "Klaida! Iveskite skaiciu.\n";
             continue;
         }
 
-        // ✅ SVARBIAUSIA DALIS (FIX)
         if (choice == 0) {
-            cout << "Užsakymas baigtas!\n";
+            cout << "Uzsakymas baigtas!\n";
             break;
         }
 
         if (choice < 1 || choice > size) {
-            cout << "Tokio pasirinkimo nėra!\n";
+            cout << "Tokio pasirinkimo nera!\n";
             continue;
         }
 
         int qty;
 
-        // kiekio tikrinimas
+        // Kiekio tikrinimas
         while (true) {
             cout << "Kiekis: ";
             cin >> qty;
@@ -134,10 +134,10 @@ int main() {
             if (cin.fail()) {
                 cin.clear();
                 cin.ignore(1000, '\n');
-                cout << "Įveskite skaičių!\n";
+                cout << "Iveskite skaiciu!\n";
             }
             else if (qty <= 0) {
-                cout << "Kiekis turi būti didesnis nei 0!\n";
+                cout << "Kiekis turi buti didesnis nei 0!\n";
             }
             else {
                 break;
