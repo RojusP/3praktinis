@@ -13,7 +13,6 @@ struct menuItemType {
     double menuPrice;
 };
 
-// Nuskaityti meniu
 void getData(menuItemType menuList[], int &size) {
     ifstream inFile("menu.txt");
 
@@ -34,7 +33,6 @@ void getData(menuItemType menuList[], int &size) {
     inFile.close();
 }
 
-// Rodyti meniu
 void showMenu(menuItemType menuList[], int size) {
     cout << "\n----- MENIU -----\n";
 
@@ -48,7 +46,6 @@ void showMenu(menuItemType menuList[], int size) {
     cout << "\n0 - Baigti uzsakyma\n";
 }
 
-// Spausdinti saskaita
 void printCheck(menuItemType menuList[], int orderQty[], int size) {
     ofstream outFile("receipt.txt");
 
@@ -85,7 +82,6 @@ void printCheck(menuItemType menuList[], int orderQty[], int size) {
     outFile.close();
 }
 
-// MAIN
 int main() {
 
     menuItemType menuList[MAX_ITEMS];
@@ -105,8 +101,7 @@ int main() {
 
         cout << "\nPasirinkimas: ";
         cin >> choice;
-
-        // Jei bloga ivestis
+        
         if (cin.fail()) {
             cin.clear();
             cin.ignore(1000, '\n');
@@ -126,7 +121,6 @@ int main() {
 
         int qty;
 
-        // Kiekio tikrinimas
         while (true) {
             cout << "Kiekis: ";
             cin >> qty;
